@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск сотрудника</title>
+</head>
+<body>
+<h1>Поиск сотрудника</h1>
+<form action="#" th:action="@{/user-search-result}" th:object="${user}" method="get">
+    <p>Имя: <input type="text" th:field="*{name}"></p>
+    <p>Фамилия: <input type="text" th:field="*{surname}"></p>
+    <p><input type="submit" value="Search"/> <input type="reset" value="Reset"></p>
+</form>
+</body>
+</html>
