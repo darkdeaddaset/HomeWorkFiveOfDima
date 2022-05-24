@@ -1,7 +1,0 @@
-Alex
-Alexovich
-Alexanov
-22
-test@test.com
-NetCracker
-100000.0
