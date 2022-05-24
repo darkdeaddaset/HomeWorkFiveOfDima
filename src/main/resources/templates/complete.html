@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta Результаты добавления>
+    <title>Результат работы</title>
+</head>
+<body>
+<h1>Результат добавления работника</h1>
+<p th:text="'Имя: ' + ${user.name}"/>
+<p th:text="'Отчество: ' + ${user.lastname}"/>
+<p th:text="'Фамили: ' + ${user.surname}"/>
+<p th:text="'Возраст: ' + ${user.age}"/>
+<p th:text="'Эл. почта: ' + ${user.email}"/>
+<p th:text="'Место работы: ' + ${user.work}"/>
+<p th:text="'Зарплата: ' + ${user.salary}"/>
+<a href="/user"/>
+</body>
+</html>
