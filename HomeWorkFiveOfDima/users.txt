@@ -30,3 +30,10 @@ example@adad.ru
 Unknown
 100000.0
 
+Alex
+Alexovich
+Alexanov
+22
+test@test.com
+NetCracker
+100000.0

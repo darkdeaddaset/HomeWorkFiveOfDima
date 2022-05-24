@@ -4,10 +4,11 @@ import com.savin.model.User;
 import org.springframework.stereotype.Service;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 @Service
-public class SearchImpl implements Search{
+public final class SearchImpl implements Search{
     private final String FILE = "users.txt";
     private final String regex = "\\r\\n";
     private FileReader fileReader;
@@ -34,11 +35,15 @@ public class SearchImpl implements Search{
             return user;
 
         } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            System.out.println("Recording is not possible");
             throw new RuntimeException(e);
         }
     }
 
-    private String searchUser(String name, String surname) throws FileNotFoundException {
+    private String searchUser(String name, String surname) throws IOException {
         fileReader = new FileReader(FILE);
         scanner = new Scanner(fileReader);
         StringBuilder stringBuilder = new StringBuilder();
@@ -63,6 +68,7 @@ public class SearchImpl implements Search{
             }
         }
         scanner.close();
+        fileReader.close();
         return stringBuilder.toString();
     }
 }

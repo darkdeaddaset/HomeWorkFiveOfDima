@@ -6,14 +6,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 @Service
-public class WriteFilesUser implements WriteFiles{
+public final class WriteFilesUser implements WriteFiles{
     private final String EMPTY = "Unknown";
+    private final String NAME_FILE = "users.txt";
     private FileWriter fileWriter;
 
     @Override
     public void write(User user) throws IOException {
         try {
-            fileWriter = new FileWriter("users.txt", true);
+            fileWriter = new FileWriter(NAME_FILE, true);
             edit(user);
 
             fileWriter.write(user.getName());
@@ -33,6 +34,21 @@ public class WriteFilesUser implements WriteFiles{
             fileWriter.write(System.lineSeparator());
 
         } catch (IOException e) {
+            System.out.println("Recording is not possible User");
+            throw new RuntimeException(e);
+        } finally {
+            fileWriter.close();
+        }
+    }
+
+    @Override
+    public void write(String str) throws IOException {
+        try {
+            fileWriter = new FileWriter(NAME_FILE, true);
+
+            fileWriter.write(str);
+        } catch (IOException e) {
+            System.out.println("Recording is not possible newUser");
             throw new RuntimeException(e);
         } finally {
             fileWriter.close();

@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-public class ValidationImpl implements Validation{
+public final class ValidationImpl implements Validation{
     private final String PATTERN_NAME = "[A-Za-z]+";
     private final String PATTERN_EMAIL = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
     @Autowired

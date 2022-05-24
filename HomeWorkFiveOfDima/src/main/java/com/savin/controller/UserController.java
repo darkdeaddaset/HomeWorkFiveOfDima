@@ -19,7 +19,6 @@ public class UserController {
     @Autowired
     private Search search;
 
-
     @GetMapping("/user")
     public String userResult(Model model){
         model.addAttribute("user", new User());
@@ -59,9 +58,7 @@ public class UserController {
 
     //Через статус ошибки
     @GetMapping("/error-status")
-    public ResponseEntity getStatus(){
-        return new ResponseEntity("Пользователь не найден!", HttpStatus.NOT_FOUND);
+    public ResponseEntity<?> getStatus(){
+        return new ResponseEntity("Пользователь не найден!\n" + HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND);
     }
-
-
 }
