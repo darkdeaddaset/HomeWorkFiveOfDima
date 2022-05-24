@@ -10,3 +10,4 @@
 6) Реализована загрузка файла, затем происходит дозапись в файл с работниками.
 7) Реализовано отправление письма на почту.
 
+![alt text](https://github.com/darkdeaddaset/HomeWorkFiveOfDima/blob/main/test_mail.PNG)
