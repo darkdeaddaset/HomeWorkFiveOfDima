@@ -14,9 +14,6 @@ public final class ValidationImpl implements Validation{
     private final String PATTERN_EMAIL = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
     @Autowired
     private WriteFiles writeFiles;
-    private Pattern pattern;
-    private Matcher matcher;
-
 
     @Override
     public boolean check(User user){
@@ -34,15 +31,15 @@ public final class ValidationImpl implements Validation{
     }
 
     private boolean checkName(String name){
-        pattern = Pattern.compile(PATTERN_NAME);
-        matcher = pattern.matcher(name);
+        Pattern pattern = Pattern.compile(PATTERN_NAME);
+        Matcher matcher = pattern.matcher(name);
 
         return matcher.matches();
     }
 
     private boolean checkEmail(String email){
-        pattern = Pattern.compile(PATTERN_EMAIL);
-        matcher = pattern.matcher(email);
+        Pattern pattern = Pattern.compile(PATTERN_EMAIL);
+        Matcher matcher = pattern.matcher(email);
 
         return matcher.matches();
     }

@@ -14,10 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
-    @Autowired
     private Validation validation;
-    @Autowired
     private Search search;
+
+    @Autowired
+    public UserController(Validation validation, Search search) {
+        this.validation = validation;
+        this.search = search;
+    }
 
     @GetMapping("/user")
     public String userResult(Model model){

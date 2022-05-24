@@ -11,8 +11,6 @@ import java.util.Scanner;
 public final class SearchImpl implements Search{
     private final String FILE = "users.txt";
     private final String regex = "\\r\\n";
-    private FileReader fileReader;
-    private Scanner scanner;
 
     @Override
     public User search(User user){
@@ -44,8 +42,8 @@ public final class SearchImpl implements Search{
     }
 
     private String searchUser(String name, String surname) throws IOException {
-        fileReader = new FileReader(FILE);
-        scanner = new Scanner(fileReader);
+        FileReader fileReader = new FileReader(FILE);
+        Scanner scanner = new Scanner(fileReader);
         StringBuilder stringBuilder = new StringBuilder();
 
         while (scanner.hasNextLine()){
