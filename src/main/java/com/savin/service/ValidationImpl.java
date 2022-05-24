@@ -12,8 +12,12 @@ import java.util.regex.Pattern;
 public final class ValidationImpl implements Validation{
     private final String PATTERN_NAME = "[A-Za-z]+";
     private final String PATTERN_EMAIL = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+    private final WriteFiles writeFiles;
+
     @Autowired
-    private WriteFiles writeFiles;
+    public ValidationImpl(WriteFiles writeFiles) {
+        this.writeFiles = writeFiles;
+    }
 
     @Override
     public boolean check(User user){

@@ -14,7 +14,7 @@ public final class WriteFilesUser implements WriteFiles{
     @Override
     public void write(User user) throws IOException {
         try {
-            fileWriter = new FileWriter(NAME_FILE, true);
+            FileWriter fileWriter = new FileWriter(NAME_FILE, true);
             edit(user);
 
             fileWriter.write(user.getName());

@@ -10,8 +10,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class UploadController {
-    @Autowired
-    private WriteUpload writeUpload;
+    private final WriteUpload writeUpload;
+
+    public UploadController(WriteUpload writeUpload) {
+        this.writeUpload = writeUpload;
+    }
 
     @GetMapping("/upload")
     public String menu(){

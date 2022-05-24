@@ -8,8 +8,12 @@ import java.util.Scanner;
 
 @Service
 public final class WriteUploadImpl implements WriteUpload{
+    private final WriteFiles writeFiles;
+
     @Autowired
-    private WriteFiles writeFiles;
+    public WriteUploadImpl(WriteFiles writeFiles) {
+        this.writeFiles = writeFiles;
+    }
 
     @Override
     public void write(String name, MultipartFile file) {

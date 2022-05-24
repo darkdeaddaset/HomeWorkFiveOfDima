@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
-    private Validation validation;
-    private Search search;
+    private final Validation validation;
+    private final Search search;
 
     @Autowired
     public UserController(Validation validation, Search search) {
