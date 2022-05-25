@@ -15,8 +15,8 @@ public final class SearchImpl implements Search{
     public User search(User user){
         try {
             String str = searchUser(user.getName(), user.getSurname());
+            String[] data = str.split(regex);
             if (!str.isEmpty()){
-                String[] data = str.split(regex);
 
                 user.setName(data[0]);
                 user.setSurname(data[1]);
@@ -38,21 +38,19 @@ public final class SearchImpl implements Search{
         StringBuilder stringBuilder = new StringBuilder();
         try(FileReader fileReader = new FileReader(FILE);
             Scanner scanner = new Scanner(fileReader)){
+
             while (scanner.hasNextLine()){
                 String nameRead = scanner.nextLine();
                 if (name.equals(nameRead)){
-                    stringBuilder.append(System.lineSeparator() + nameRead + System.lineSeparator());
-                    nameRead = scanner.nextLine();
+                    stringBuilder.append(nameRead + System.lineSeparator());
                 }
                 if (surname.equals(nameRead)){
                     stringBuilder.append(nameRead + System.lineSeparator());
 
                     while (scanner.hasNextLine()){
-                        String temp = scanner.nextLine();
-                        if (temp.isEmpty()){
-                            break;
-                        } else {
-                            stringBuilder.append(temp + System.lineSeparator());
+                        nameRead = scanner.nextLine();
+                        if (!nameRead.isEmpty()){
+                            stringBuilder.append(nameRead + System.lineSeparator());
                         }
                     }
                 }
