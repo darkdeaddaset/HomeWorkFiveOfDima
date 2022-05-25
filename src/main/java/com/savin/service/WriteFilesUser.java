@@ -11,7 +11,7 @@ public final class WriteFilesUser implements WriteFiles{
     private final String NAME_FILE = "users.txt";
 
     @Override
-    public void write(User user) {
+    public void write(User user) throws IOException {
         try (FileWriter fileWriter = new FileWriter(NAME_FILE, true)){
             edit(user);
 
@@ -30,9 +30,6 @@ public final class WriteFilesUser implements WriteFiles{
             fileWriter.write(Double.toString(user.getSalary()));
             fileWriter.write(System.lineSeparator());
             fileWriter.write(System.lineSeparator());
-        } catch (IOException e) {
-            System.out.println("Recording is not possible User");
-            throw new RuntimeException(e);
         }
     }
 
