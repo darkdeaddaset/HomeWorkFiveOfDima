@@ -47,11 +47,7 @@ public class UserController {
     public String userSearchResult(@ModelAttribute User user){
         user = search.search(user);
 
-        if (user != null){
-            return "result-searching";
-        } else {
-            return "redirect:/user-search-error";
-        }
+        return user != null ? "result-searching" : "redirect:/user-search-error";
     }
 
     //Через представление
