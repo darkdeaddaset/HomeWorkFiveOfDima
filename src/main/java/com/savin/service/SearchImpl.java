@@ -2,7 +2,6 @@ package com.savin.service;
 
 import com.savin.model.User;
 import org.springframework.stereotype.Service;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
@@ -29,44 +28,37 @@ public final class SearchImpl implements Search{
             } else {
                 user = null;
             }
-
             return user;
-
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-            throw new RuntimeException(e);
         } catch (IOException e) {
-            System.out.println("Recording is not possible");
             throw new RuntimeException(e);
         }
     }
 
     private String searchUser(String name, String surname) throws IOException {
-        FileReader fileReader = new FileReader(FILE);
-        Scanner scanner = new Scanner(fileReader);
         StringBuilder stringBuilder = new StringBuilder();
+        try(FileReader fileReader = new FileReader(FILE)){
+            Scanner scanner = new Scanner(fileReader);
+            while (scanner.hasNextLine()){
+                String nameRead = scanner.nextLine();
+                if (name.equals(nameRead)){
+                    stringBuilder.append(nameRead + System.lineSeparator());
+                    nameRead = scanner.nextLine();
+                }
+                if (surname.equals(nameRead)){
+                    stringBuilder.append(nameRead + System.lineSeparator());
 
-        while (scanner.hasNextLine()){
-            String nameRead = scanner.nextLine();
-            if (name.equals(nameRead)){
-                stringBuilder.append(nameRead + System.lineSeparator());
-                nameRead = scanner.nextLine();
-            }
-            if (surname.equals(nameRead)){
-                stringBuilder.append(nameRead + System.lineSeparator());
-
-                while (scanner.hasNextLine()){
-                    String temp = scanner.nextLine();
-                    if (temp.isEmpty()){
-                        break;
-                    } else {
-                        stringBuilder.append(temp + System.lineSeparator());
+                    while (scanner.hasNextLine()){
+                        String temp = scanner.nextLine();
+                        if (temp.isEmpty()){
+                            break;
+                        } else {
+                            stringBuilder.append(temp + System.lineSeparator());
+                        }
                     }
                 }
             }
+            scanner.close();
         }
-        scanner.close();
-        fileReader.close();
         return stringBuilder.toString();
     }
 }
