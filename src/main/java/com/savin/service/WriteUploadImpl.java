@@ -17,8 +17,9 @@ public final class WriteUploadImpl implements WriteUpload{
 
     @Override
     public void write(String name, MultipartFile file) {
-        try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(name+".txt")))){
+        try {
             byte[] bytes = file.getBytes();
+            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(name+".txt")));
             stream.write(bytes);
             stream.close();
 
