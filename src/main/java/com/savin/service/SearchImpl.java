@@ -41,7 +41,7 @@ public final class SearchImpl implements Search{
             while (scanner.hasNextLine()){
                 String nameRead = scanner.nextLine();
                 if (name.equals(nameRead)){
-                    stringBuilder.append(nameRead + System.lineSeparator());
+                    stringBuilder.append(System.lineSeparator() + nameRead + System.lineSeparator());
                     nameRead = scanner.nextLine();
                 }
                 if (surname.equals(nameRead)){
