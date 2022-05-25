@@ -37,7 +37,7 @@ public final class SearchImpl implements Search{
     private String searchUser(String name, String surname) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
         try(FileReader fileReader = new FileReader(FILE);
-        Scanner scanner = new Scanner(fileReader)){
+            Scanner scanner = new Scanner(fileReader)){
             while (scanner.hasNextLine()){
                 String nameRead = scanner.nextLine();
                 if (name.equals(nameRead)){
