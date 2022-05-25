@@ -17,16 +17,19 @@ public final class WriteUploadImpl implements WriteUpload{
 
     @Override
     public void write(String name, MultipartFile file) {
-        try (FileReader fileReader = new FileReader(name + ".txt");
-             BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(name+".txt")));
-             Scanner scanner = new Scanner(fileReader)){
-
+        try {
             byte[] bytes = file.getBytes();
+            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(name+".txt")));
             stream.write(bytes);
+            stream.close();
+
+            FileReader fileReader = new FileReader(name + ".txt");
+            Scanner scanner = new Scanner(fileReader);
 
             while (scanner.hasNextLine()){
                 writeFiles.write(scanner.nextLine() + System.lineSeparator());
             }
+            scanner.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
