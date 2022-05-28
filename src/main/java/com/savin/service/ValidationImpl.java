@@ -19,7 +19,7 @@ public final class ValidationImpl implements Validation{
         this.writeFiles = writeFiles;
     }
 
-    @Override
+    /*@Override
     public boolean check(User user){
         if (checkName(user.getName()) && checkName(user.getLastname()) &&
                 checkName(user.getSurname()) && checkEmail(user.getEmail()) &&
@@ -32,6 +32,19 @@ public final class ValidationImpl implements Validation{
             return true;
         }
         return false;
+    }*/
+
+    //Альтернатива
+    public boolean check(User user){
+        boolean b = checkAll(user);
+        if (b){
+            try {
+                writeFiles.write(user);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return b;
     }
 
     private boolean checkName(String name){
@@ -54,5 +67,11 @@ public final class ValidationImpl implements Validation{
 
     private boolean checkSalary(double salary){
         return salary>0 && salary<1000000;
+    }
+
+    public boolean checkAll(User user){
+        return checkName(user.getName()) && checkName(user.getLastname()) &&
+                checkName(user.getSurname()) && checkEmail(user.getEmail()) &&
+                checkAge(user.getAge()) && checkSalary(user.getSalary());
     }
 }
