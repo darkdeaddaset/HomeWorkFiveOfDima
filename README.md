@@ -1,4 +1,4 @@
-# HomeWorkFiveOfDima
+# HomeWorkFiveOfDima (Принято)
 
 Привет Глеб!
 
